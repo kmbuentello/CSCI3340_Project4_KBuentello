@@ -15,6 +15,7 @@ import javafx.scene.layout.BorderPane;
 /**
  *
  * @author Kayla
+ * 
  */
 public class CitationSystem extends Application {
     

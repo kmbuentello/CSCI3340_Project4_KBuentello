@@ -25,7 +25,7 @@ public class Citations {
   
     /**
      * 
-     * 
+     * Defined constructor with 12 parameters for a citation
      * @param ticketNo
      * @param licenseNo
      * @param permitNo
