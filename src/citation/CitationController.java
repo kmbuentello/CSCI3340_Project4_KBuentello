@@ -18,6 +18,11 @@ public class CitationController {
     CitationView citeView;
     int ticketNo;
     
+    /**
+     * Defined constructor and sets events for buttons
+     * @param citeModel
+     * @param citeView 
+     */
     public CitationController(CitationModel citeModel, CitationView citeView) {
         this.citeModel = citeModel;
         this.citeView = citeView;

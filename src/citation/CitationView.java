@@ -87,7 +87,7 @@ public class CitationView extends BorderPane{
         TextArea thisText = new TextArea();
         
         private int currentTicket;
-    
+   
     public CitationView() {        
     //Initialize Variables
         currentTicket = 0;
