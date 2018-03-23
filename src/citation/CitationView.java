@@ -122,7 +122,7 @@ public class CitationView extends BorderPane{
         form1.add(vbox1, 1,0);
         form1.add(hbox1, 1,1);
         form1.add(vbox4,0,1);
-        form1.add(vbox3,2,0);
+        form1.add(vbox3,1,2);
 
  
 
@@ -132,7 +132,7 @@ public class CitationView extends BorderPane{
         vbox2.getChildren().add(paymentLabel);
         
         form1. add(vbox2, 3, 0);
-    }
+    } 
     
 /*    public void updateMailView(Citations currentUser){
         String licenseNo = currentUser.getLicenseNo();
