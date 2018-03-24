@@ -177,9 +177,7 @@ public class CitationView extends BorderPane{
         {
             System.out.println("IO Exception");
         }finally {
-            if (in != null) {
-                in.close();
-            }
+
             if (out != null) {
                 out.close();
             }

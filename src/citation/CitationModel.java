@@ -41,23 +41,8 @@ public class CitationModel {
    public Citations getCurrentUser() {
         return currentCitation;
     }
-/*
-    public ArrayList<Citations> getCurrentUsers() {
-        return citationList;
-    }*/
- /*  
-   public void outputFile(ArrayList<Citations> citationList) throws IOException {
-       FileOutputStream out = null;
-       int c;
-       
-       try {
-           out = new FileOutputStream("outFile.txt");
-           while (c != citationList.lastIndexOf(citationList))
-           {
-               
-           }
-       }
-   }*/
+  
+
     /*public void fileIO(ArrayList<Citations> citationList, Citations current) throws IOException {
 
         FileInputStream in = null;
