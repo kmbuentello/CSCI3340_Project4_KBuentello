@@ -5,6 +5,11 @@
  */
 package citation;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import static java.lang.System.in;
+import static java.lang.System.out;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -65,6 +70,9 @@ public class CitationView extends BorderPane{
         private GridPane form1 = new GridPane();
         
         private Button submitBtn = new Button();
+        Button readBtn = new Button();//Read  all tickets
+        Button viewBtn = new Button();//View all tickets
+      
         
         //TextArea textBox = new TextArea();
         
@@ -82,7 +90,8 @@ public class CitationView extends BorderPane{
         VBox vbox2 = new VBox();//Payment Info box
         VBox vbox3 = new VBox();//Print Ticket box
         VBox vbox4 = new VBox();//forward/back buttons
-        HBox hbox1 = new HBox();//Submit button
+        HBox hbox1 = new HBox();//Buttons box
+       
         
         TextArea thisText = new TextArea();
         
@@ -109,14 +118,16 @@ public class CitationView extends BorderPane{
        
     
     
-    //Submit button   
-	hbox1.getChildren().add(submitBtn);
+    //Button setup   
+	hbox1.getChildren().addAll(bckBtn, submitBtn, readBtn, viewBtn,fwdBtn);
         hbox1.setAlignment(Pos.CENTER);
-        submitBtn.setText("Submit");
+        submitBtn.setText("Add new citation");
+        readBtn.setText("Get citations");
+        viewBtn.setText("View citations");
         
-    //Back and forward buttons
+   /* //Back and forward buttons
         vbox4.getChildren().addAll(bckBtn, fwdBtn);
-        vbox4.setAlignment(Pos.BASELINE_LEFT);
+        vbox4.setAlignment(Pos.BASELINE_LEFT);*/
         
     //Place boxes in rows	
         form1.add(vbox1, 1,0);
@@ -149,15 +160,31 @@ public class CitationView extends BorderPane{
     }*/
     
     
-    public void printTicket(Citations Current){
+    public void printTicket(Citations Current) throws IOException {
         
         String data = "Ticket No: " + Current.getTicketNo() + "\nLicense No: " + Current.getLicenseNo() + "\nPermit No: " + Current.getPermitNo()
                     + "\nCar Make: " + Current.getCarMake() + "\nCar Model " + Current.getCarModel() 
                     + "\nViolation Type: " + Current.getViolationType() + "\nState: " + Current.getState()
                     + "\nColor: " + Current.getColor() + "\nDate: " + Current.getDate()
                     + "\nTime: " + Current.getTime() + "\nLocation: " + Current.getLocation()
-                    + "\nIssued By: " + Current.getIssuer();
+                    + "\nIssued By: " + Current.getIssuer() + "\n\n";
+        int c = 0;
         
+        try (PrintWriter out = new PrintWriter("outFile.txt")){
+           out.append(data, c, data.length());
+            
+        }catch(IOException io)
+        {
+            System.out.println("IO Exception");
+        }finally {
+            if (in != null) {
+                in.close();
+            }
+            if (out != null) {
+                out.close();
+            }
+        }
+           
         
         thisText.clear();
         thisText.appendText(data);

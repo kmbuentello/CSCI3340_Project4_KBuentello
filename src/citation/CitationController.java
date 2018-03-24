@@ -45,7 +45,7 @@ public class CitationController {
                     Citations currentCitation = new Citations(ticketNo,citeView.getLicenseTF().getText(),citeView.getPermitTF().getText(),citeView.getCarModelTF().getText(),citeView.getCarMakeTF().getText(),citeView.getViolationTF().getText(),citeView.getStateTF().getText(),citeView.getColorTF().getText(),citeView.getDateTF().getText(),citeView.getTimeTF().getText(),citeView.getLocTF().getText(),citeView.getIssuerTF().getText());
                     citeModel.getCitationList().add(currentCitation);
                     citeView.printTicket(currentCitation);
-                    
+                    //citeModel.fileIO(citeModel.getCitationList(), citeModel.getCurrentUser()) throws IOException;
                      
 		}
 	});

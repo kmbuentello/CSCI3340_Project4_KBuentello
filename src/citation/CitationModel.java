@@ -5,6 +5,9 @@
  */
 package citation;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -42,4 +45,45 @@ public class CitationModel {
     public ArrayList<Citations> getCurrentUsers() {
         return citationList;
     }*/
+ /*  
+   public void outputFile(ArrayList<Citations> citationList) throws IOException {
+       FileOutputStream out = null;
+       int c;
+       
+       try {
+           out = new FileOutputStream("outFile.txt");
+           while (c != citationList.lastIndexOf(citationList))
+           {
+               
+           }
+       }
+   }*/
+    /*public void fileIO(ArrayList<Citations> citationList, Citations current) throws IOException {
+
+        FileInputStream in = null;
+        FileOutputStream out = null;
+
+        try {
+            in = new FileInputStream("inFile.txt");
+            out = new FileOutputStream("outFile.txt");
+            int c;
+            String temp = citationList.toString();
+
+            while ((c = in.read()) != -1) {
+                
+                out.write(temp.getBytes(), c, citationList.size());
+            }
+        }catch(IOException io)
+        {
+            System.out.println("IO ");
+        }finally {
+            if (in != null) {
+                in.close();
+            }
+            if (out != null) {
+                out.close();
+            }
+        }
+    }*/
+
 }
