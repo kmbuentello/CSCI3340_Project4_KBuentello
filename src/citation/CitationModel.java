@@ -87,7 +87,7 @@ public class CitationModel {
         return i;
     }
     
-    public Citations retrieveDB()
+    public void retrieveDB()
     {
         Citations currentCitations = new Citations();
         try
@@ -106,7 +106,7 @@ public class CitationModel {
         {
             System.out.println("Error retrieving from db: " + e);
         }
-        return currentCitation;
+        
     }
 
 }

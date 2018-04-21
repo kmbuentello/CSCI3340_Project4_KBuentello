@@ -114,14 +114,15 @@ public class CitationController {
                 {
                      public void handle(ActionEvent event)
                      {
-                                                  
-                         Citations currentCitation= citeModel.retrieveDB();
-                         try {
-                             citeView.printTicket(currentCitation);
-                         } catch (IOException ex) {
-                             Logger.getLogger(CitationController.class.getName()).log(Level.SEVERE, null, ex);
-                         }
-                         citeView.clearFields();
+                        citeView.getThisText().clear();
+                        for(Citations current : citeModel.getCitationList())
+                        {
+                            try {
+                                citeView.printTicket(current);
+                            } catch (IOException ex) {
+                                Logger.getLogger(CitationController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
                      }
                 });
         
@@ -131,13 +132,8 @@ public class CitationController {
                      public void handle(ActionEvent event)
                      {
                                                   
-                         Citations currentCitation= citeModel.retrieveDB();
-                         try {
-                             citeView.printTicket(currentCitation);
-                         } catch (IOException ex) {
-                             Logger.getLogger(CitationController.class.getName()).log(Level.SEVERE, null, ex);
-                         }
-                         citeView.clearFields();
+                         citeModel.retrieveDB();
+                       
                      }
                 });
     }

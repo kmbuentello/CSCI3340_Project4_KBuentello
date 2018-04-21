@@ -32,6 +32,20 @@ import java.util.ArrayList;
  */
 public class CitationView extends BorderPane{
 
+    /**
+     * @return the thisText
+     */
+    public TextArea getThisText() {
+        return thisText;
+    }
+
+    /**
+     * @param thisText the thisText to set
+     */
+    public void setThisText(TextArea thisText) {
+        this.thisText = thisText;
+    }
+
          
         private Label ticketLabel = new Label("Register New Vehicle");
         
@@ -94,7 +108,7 @@ public class CitationView extends BorderPane{
         HBox hbox1 = new HBox();//Buttons box
        
         
-        TextArea thisText = new TextArea();
+        private TextArea thisText = new TextArea();
         
         private int currentTicket;
    
@@ -170,8 +184,8 @@ public class CitationView extends BorderPane{
                     + "\nTime: " + Current.getTime() + "\nLocation: " + Current.getLocation()
                     + "\nIssued By: " + Current.getIssuer() + "\n\n";
              
-        thisText.clear();
-        thisText.appendText(data);
+       
+        getThisText().appendText(data);
         clearFields();
     }
     
@@ -189,8 +203,8 @@ public class CitationView extends BorderPane{
         
         }
              
-        thisText.clear();
-        thisText.appendText(data);
+        getThisText().clear();
+        getThisText().appendText(data);
         clearFields();
     }
     
