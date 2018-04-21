@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import citation.CitationView;
 import citation.CitationModel;
+import citation.CitationDatabase;
 import citation.CitationController;
 import javafx.scene.layout.BorderPane;
 /**
@@ -21,6 +22,7 @@ public class CitationSystem extends Application {
     
     CitationView citeView = new CitationView(); 
     CitationModel citeModel = new CitationModel();
+   
     CitationController cc = new CitationController(citeModel, citeView);
     
     

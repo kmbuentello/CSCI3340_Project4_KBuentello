@@ -23,6 +23,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
+import java.util.ArrayList;
 
 
 /**
@@ -70,8 +71,8 @@ public class CitationView extends BorderPane{
         private GridPane form1 = new GridPane();
         
         private Button submitBtn = new Button();
-        Button readBtn = new Button();//Read  all tickets
-        Button viewBtn = new Button();//View all tickets
+        private Button readBtn = new Button();//Read  all tickets
+        private Button viewBtn = new Button();//View all tickets
       
         
         //TextArea textBox = new TextArea();
@@ -122,8 +123,8 @@ public class CitationView extends BorderPane{
 	hbox1.getChildren().addAll(bckBtn, submitBtn, readBtn, viewBtn,fwdBtn);
         hbox1.setAlignment(Pos.CENTER);
         submitBtn.setText("Add new citation");
-        readBtn.setText("Get citations");
-        viewBtn.setText("View citations");
+        readBtn.setText("Get citations from DB");
+        viewBtn.setText("View citations from DB");
         
    /* //Back and forward buttons
         vbox4.getChildren().addAll(bckBtn, fwdBtn);
@@ -168,28 +169,32 @@ public class CitationView extends BorderPane{
                     + "\nColor: " + Current.getColor() + "\nDate: " + Current.getDate()
                     + "\nTime: " + Current.getTime() + "\nLocation: " + Current.getLocation()
                     + "\nIssued By: " + Current.getIssuer() + "\n\n";
-        int c = 0;
-        
-        try (PrintWriter out = new PrintWriter("outFile.txt")){
-           out.append(data, c, data.length());
-            
-        }catch(IOException io)
-        {
-            System.out.println("IO Exception");
-        }finally {
-
-            if (out != null) {
-                out.close();
-            }
-        }
-           
-        
+             
         thisText.clear();
         thisText.appendText(data);
-        //clearFields();
+        clearFields();
     }
     
- /*   public void clearFields()
+    public void printAllTickets(ArrayList Current) throws IOException {
+        int i = 0;
+        String data = "";
+        while(i < Current.lastIndexOf(Current)){
+        data += "Ticket No: " + Current.get(i) + "\nLicense No: " + Current.get(i) + "\nPermit No: " + Current.get(i)
+                    + "\nCar Make: " + Current.get(i) + "\nCar Model " + Current.get(i) 
+                    + "\nViolation Type: " + Current.get(i) + "\nState: " + Current.get(i)
+                    + "\nColor: " + Current.get(i) + "\nDate: " + Current.get(i)
+                    + "\nTime: " + Current.get(i) + "\nLocation: " + Current.get(i)
+                    + "\nIssued By: " + Current.get(i) + "\n\n";
+        i+=1;
+        
+        }
+             
+        thisText.clear();
+        thisText.appendText(data);
+        clearFields();
+    }
+    
+    public void clearFields()
     {
         licenseTF.clear();
         permitTF.clear();
@@ -202,7 +207,7 @@ public class CitationView extends BorderPane{
         locTF.clear();
         issuerTF.clear();
         stateTF.clear();
-    }*/
+    }
     
 
     /**
@@ -597,5 +602,32 @@ public class CitationView extends BorderPane{
         this.currentTicket = currentTicket;
     }
 
-    
+        /**
+     * @return the readBtn
+     */
+    public Button getReadBtn() {
+        return readBtn;
+    }
+
+    /**
+     * @param readBtn the readBtn to set
+     */
+    public void setReadBtn(Button readBtn) {
+        this.readBtn = readBtn;
+    }
+
+    /**
+     * @return the viewBtn
+     */
+    public Button getViewBtn() {
+        return viewBtn;
+    }
+
+    /**
+     * @param viewBtn the viewBtn to set
+     */
+    public void setViewBtn(Button viewBtn) {
+        this.viewBtn = viewBtn;
+    }
+
 }

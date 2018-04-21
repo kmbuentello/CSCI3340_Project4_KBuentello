@@ -5,7 +5,10 @@
  */
 package citation;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -16,6 +19,7 @@ import javafx.event.EventHandler;
 public class CitationController {
     CitationModel citeModel;
     CitationView citeView;
+    CitationDatabase citeDB;
     int ticketNo;
     
     /**
@@ -40,12 +44,32 @@ public class CitationController {
 		@Override
 		public void handle(ActionEvent event)
 		{
-			
-                    ticketNo += 1;
-                    Citations currentCitation = new Citations(ticketNo,citeView.getLicenseTF().getText(),citeView.getPermitTF().getText(),citeView.getCarModelTF().getText(),citeView.getCarMakeTF().getText(),citeView.getViolationTF().getText(),citeView.getStateTF().getText(),citeView.getColorTF().getText(),citeView.getDateTF().getText(),citeView.getTimeTF().getText(),citeView.getLocTF().getText(),citeView.getIssuerTF().getText());
-                    citeModel.getCitationList().add(currentCitation);
-                    citeView.printTicket(currentCitation);
-                    //citeModel.fileIO(citeModel.getCitationList(), citeModel.getCurrentUser()) throws IOException;
+                    
+                    try {
+                         String licenseNo = citeView.getLicenseTF().getText();
+                         String permitNo = citeView.getPermitTF().getText();
+                         String carModel = citeView.getCarModelTF().getText();
+                         String carMake = citeView.getCarMakeTF().getText();
+                         String violation = citeView.getViolationTF().getText();
+                         String state = citeView.getStateTF().getText();
+                         String color = citeView.getColorTF().getText();
+                         String date = citeView.getDateTF().getText();
+                         String time = citeView.getTimeTF().getText();
+                         String location = citeView.getLocTF().getText();
+                         String issuer = citeView.getIssuerTF().getText();
+                        
+                         citeView.setCurrentTicket(citeView.getCurrentTicket()+1);
+                         
+                         ticketNo= citeView.getCurrentTicket();
+                         
+                        Citations currentCitation = new Citations(ticketNo,licenseNo,permitNo,carModel,carMake,violation,state,color,date,time,location,issuer);
+                        citeModel.setCurrentUser(currentCitation);
+                        citeModel.addCitationDB(currentCitation);
+                        citeView.printTicket(currentCitation);
+                        
+                    } catch (IOException ex) {
+                        Logger.getLogger(CitationController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                      
 		}
 	});
@@ -56,9 +80,13 @@ public class CitationController {
             public void handle(ActionEvent event) {
                 if (citeView.getCurrentTicket() != 0)
                 {
-                    citeView.setCurrentTicket(citeView.getCurrentTicket()-1);
-                    Citations currentCitation = citeModel.getCitationList().get(citeView.getCurrentTicket());
-                    citeView.printTicket(currentCitation);
+                    try {
+                        citeView.setCurrentTicket(citeView.getCurrentTicket()-1);
+                        Citations currentCitation = citeModel.getCitationList().get(citeView.getCurrentTicket());
+                        citeView.printTicket(currentCitation);
+                    } catch (IOException ex) {
+                        Logger.getLogger(CitationController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
     });
@@ -69,15 +97,49 @@ public class CitationController {
             public void handle(ActionEvent event) {
                 if (citeView.getCurrentTicket() < citeModel.getCitationList().size()-1)
                 {
-                    citeView.setCurrentTicket(citeView.getCurrentTicket()+1);
-                    Citations currentCitation = citeModel.getCitationList().get(citeView.getCurrentTicket());
-                    citeView.printTicket(currentCitation);
+                    try {
+                        citeView.setCurrentTicket(citeView.getCurrentTicket()+1);
+                        Citations currentCitation = citeModel.getCitationList().get(citeView.getCurrentTicket());
+                        citeView.printTicket(currentCitation);
+                    } catch (IOException ex) {
+                        Logger.getLogger(CitationController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
     });
     
-    
-   
+ 
+        citeView.getViewBtn().setOnAction(
+                new EventHandler<ActionEvent>()
+                {
+                     public void handle(ActionEvent event)
+                     {
+                                                  
+                         Citations currentCitation= citeModel.retrieveDB();
+                         try {
+                             citeView.printTicket(currentCitation);
+                         } catch (IOException ex) {
+                             Logger.getLogger(CitationController.class.getName()).log(Level.SEVERE, null, ex);
+                         }
+                         citeView.clearFields();
+                     }
+                });
+        
+        citeView.getReadBtn().setOnAction(
+                new EventHandler<ActionEvent>()
+                {
+                     public void handle(ActionEvent event)
+                     {
+                                                  
+                         Citations currentCitation= citeModel.retrieveDB();
+                         try {
+                             citeView.printTicket(currentCitation);
+                         } catch (IOException ex) {
+                             Logger.getLogger(CitationController.class.getName()).log(Level.SEVERE, null, ex);
+                         }
+                         citeView.clearFields();
+                     }
+                });
     }
     
    

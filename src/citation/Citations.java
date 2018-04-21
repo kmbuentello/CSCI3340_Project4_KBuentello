@@ -73,7 +73,7 @@ public class Citations {
      * @param ticketNo the ticketNo to set
      */
     public void setTicketNo(int ticketNo) {
-        this.ticketNo = ticketNo;
+        this.ticketNo = ticketNo += 1;
     }
 
     /**
